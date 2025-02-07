@@ -2,6 +2,7 @@
 "use client";
 
 import React from "react";
+import Link from 'next/link';
 
 
 const Header: React.FC = () => {
@@ -11,11 +12,11 @@ const Header: React.FC = () => {
         {/* 왼쪽 영역: 로고와 내비게이션 */}
         <div className="flex items-center space-x-6">
           {/* 로고 영역 */}
-          <div className="font-bold text-xl">PD bridge</div>
+          <div className="font-bold text-xl"> <Link href="/">PD bridge</Link></div>
           {/* 내비게이션 메뉴 */}
           <nav>
             <ul className="flex space-x-4">
-              <li className="cursor-pointer hover:text-blue-500">기획자를 위한 개발용어</li>
+              <li className="cursor-pointer hover:text-blue-500"> <Link href="/bcomponents">기획자를 위한 개발용어</Link></li>
               <li className="cursor-pointer hover:text-blue-500">상단메뉴 2</li>
               <li className="cursor-pointer hover:text-blue-500">상단메뉴 3</li>
             </ul>
