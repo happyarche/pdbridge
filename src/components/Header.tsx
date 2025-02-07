@@ -15,7 +15,7 @@ const Header: React.FC = () => {
           {/* 내비게이션 메뉴 */}
           <nav>
             <ul className="flex space-x-4">
-              <li className="cursor-pointer hover:text-blue-500">상단메뉴 1</li>
+              <li className="cursor-pointer hover:text-blue-500">기획자를 위한 개발용어</li>
               <li className="cursor-pointer hover:text-blue-500">상단메뉴 2</li>
               <li className="cursor-pointer hover:text-blue-500">상단메뉴 3</li>
             </ul>
