@@ -6,7 +6,7 @@ const LectureList = () => {
     {
       title: "웹 개발 기본 이해",
       subtopics: [
-        { name: "웹의 작동 원리", link: "/teamsync/contents/1" },
+        { name: "웹의 작동 원리", link: "/aboutus" },
         { name: "서버와 클라이언트의 역할", link: "#" },
         { name: "HTML, CSS, JavaScript의 기본 개념", link: "#" },
       ],

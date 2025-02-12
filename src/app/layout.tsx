@@ -20,7 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </header>
 
         
-        <div className="flex flex-col flex-grow pt-[60px] min-h-screen">
+        <div className="flex flex-col flex-grow pt-[60px] min-h-screen ">
           <main className="flex-grow">
             {isMainPage ? <MainLayout>{children}</MainLayout> : <Layout adSlot={<AdBanner/>}>{children}</Layout>}
           </main>
