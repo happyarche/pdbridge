@@ -1,6 +1,3 @@
-import { randomFillSync } from "crypto";
-import { readFileSync } from "fs";
-
 
 const Layout: React.FC<{ children: React.ReactNode; adSlot?: React.ReactNode }> = ({ children, adSlot }) => {
     return (
