@@ -10,22 +10,31 @@ import { AdBanner } from "@/components/AdBanner";
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const isMainPage = pathname === "/";
+  const isLoginPage = pathname === "/auth/login";
+  const isSignUpPage = pathname === "/auth/signup";
+
+  if (isLoginPage || isSignUpPage) {
+    return (
+      <html lang="ko">
+        <body className="flex flex-col min-h-screen bg-gray-100">
+          <main className="flex-grow w-full flex justify-center items-center">
+            {children}
+          </main>
+        </body>
+      </html>
+    );
+  }
 
   return (
     <html lang="ko">
       <body className="flex flex-col min-h-screen">
-        
         <header className="fixed top-0 left-0 w-full bg-white shadow-md z-50">
           <Header />
         </header>
-
-        
-        <div className="flex flex-col flex-grow pt-[60px] min-h-screen ">
+        <div className="flex flex-col flex-grow pt-[60px] min-h-screen">
           <main className="flex-grow">
-            {isMainPage ? <MainLayout>{children}</MainLayout> : <Layout adSlot={<AdBanner/>}>{children}</Layout>}
+            {isMainPage ? <MainLayout>{children}</MainLayout> : <Layout adSlot={<AdBanner />}>{children}</Layout>}
           </main>
-
-          
           <Footer />
         </div>
       </body>
