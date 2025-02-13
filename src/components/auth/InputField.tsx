@@ -7,7 +7,7 @@ interface InputFieldProps {
   id: string;
   type: string;
   placeholder: string;
-  register: UseFormRegister<any>;
+  register: UseFormRegister<any>;  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   error?: FieldError;
   trigger: (name: "username" | "email" | "password" | "confirmPassword" | "terms" | ("username" | "email" | "password" | "confirmPassword" | "terms")[] | readonly ("username" | "email" | "password" | "confirmPassword" | "terms")[] | undefined) => void;
   showPasswordToggle?: boolean;

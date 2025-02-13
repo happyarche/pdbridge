@@ -9,7 +9,7 @@ type Props = {
 export function FormCard({ title, children }: Props) {
     return (
         <div style={{ maxWidth: '90%', width: '550px' }}>
-            <div className="bg-white rounded-lg shadow-md p-10 mx-auto">
+            <div className="bg-white rounded-lg shadow-md p-10 mx-auto" style={{ marginTop: '100px' }}>
             <p className="text-2xl font-normal mt-2 mb-9">{title}</p>
             {children}
             </div>
