@@ -2,7 +2,7 @@
 import Link from "next/link";
 import Eye from "@/components/icons/eye";
 import EyeOff from "@/components/icons/eye-off"
-import React, { useState } from "react"
+import React from "react"
 import { FormCard } from "@/components/auth/FormCard";
 
 export default function Page() {

@@ -1,5 +1,4 @@
 import {FormCard} from "@/components/auth/FormCard";
-import Link from "next/link";
 
 
 export default function Page() {
