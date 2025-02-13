@@ -1,22 +1,21 @@
 import React from 'react';
-import { UseFormRegister, FieldError, UseFormTrigger, Path } from 'react-hook-form';
+import { UseFormRegister, FieldError, Path } from 'react-hook-form';
 import Eye from '@/components/icons/eye';
 import EyeOff from '@/components/icons/eye-off';
-
-
 import { FieldValues } from 'react-hook-form';
 
 interface InputFieldProps<T extends FieldValues> {
-  id: string;
+  id: Path<T>;
   type: string;
   placeholder: string;
   register: UseFormRegister<T>;
   error?: FieldError;
-  trigger: UseFormTrigger<T>;
+  trigger: (name: keyof T) => void;
   showPasswordToggle?: boolean;
   showPassword?: boolean;
   setShowPassword?: React.Dispatch<React.SetStateAction<boolean>>;
 }
+
 
 const InputField = <T extends FieldValues>({
   id,
@@ -37,9 +36,9 @@ const InputField = <T extends FieldValues>({
           type={showPasswordToggle && showPassword ? 'text' : type}
           placeholder={placeholder}
           className="w-full px-3 py-4 border rounded-md focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
-          {...register(id as Path<T>, {
-            onChange: () => trigger(id as Path<T>),
-            onBlur: () => trigger(id as Path<T>),
+          {...register(id, {
+            onChange: () => trigger(id as keyof T),
+            onBlur: () => trigger(id as keyof T),
           })}
         />
         {showPasswordToggle && setShowPassword && (
