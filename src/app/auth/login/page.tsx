@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from 'react';
 import { z } from 'zod';
-import { useForm, UseFormTrigger } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Link from 'next/link';
 import { FormCard } from '@/components/auth/FormCard';
@@ -28,7 +28,7 @@ export default function Page() {
   return (
     <FormCard title="로그인">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <InputField
+        <InputField<LoginSchema>
           id="email"
           type="email"
           placeholder="이메일을 입력하세요"
@@ -36,7 +36,7 @@ export default function Page() {
           error={errors.email}
           trigger={trigger}
         />
-        <InputField
+        <InputField<LoginSchema>
           id="password"
           type="password"
           placeholder="비밀번호를 입력하세요"
