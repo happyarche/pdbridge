@@ -1,13 +1,15 @@
 import React from 'react';
-import { UseFormRegister, FieldError } from 'react-hook-form';
+import { UseFormRegister, FieldError, Path } from 'react-hook-form';
 import Eye from '@/components/icons/eye';
 import EyeOff from '@/components/icons/eye-off';
 
-interface InputFieldProps {
+import { FieldValues } from 'react-hook-form';
+
+interface InputFieldProps<T extends FieldValues> {
   id: string;
   type: string;
   placeholder: string;
-  register: UseFormRegister<any>;  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  register: UseFormRegister<T>;  
   error?: FieldError;
   trigger: (name: "username" | "email" | "password" | "confirmPassword" | "terms" | ("username" | "email" | "password" | "confirmPassword" | "terms")[] | readonly ("username" | "email" | "password" | "confirmPassword" | "terms")[] | undefined) => void;
   showPasswordToggle?: boolean;
@@ -15,7 +17,7 @@ interface InputFieldProps {
   setShowPassword?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const InputField: React.FC<InputFieldProps> = ({
+const InputField = <T extends FieldValues>({ 
   id,
   type,
   placeholder,
@@ -25,7 +27,7 @@ const InputField: React.FC<InputFieldProps> = ({
   showPasswordToggle = false,
   showPassword,
   setShowPassword,
-}) => {
+}: InputFieldProps<T>) => {
   return (
     <div className="mb-4 relative">
       <div className="relative">
@@ -34,7 +36,7 @@ const InputField: React.FC<InputFieldProps> = ({
           type={showPasswordToggle && showPassword ? 'text' : type}
           placeholder={placeholder}
           className="w-full px-3 py-4 border rounded-md focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
-          {...register(id, {
+          {...register(id as Path<T>, {
             onChange: () => trigger(id as "username" | "email" | "password" | "confirmPassword" | "terms"),
             onBlur: () => trigger(id as "username" | "email" | "password" | "confirmPassword" | "terms"),
           })}
