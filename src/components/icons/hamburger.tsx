@@ -1,6 +1,6 @@
 import React from "react"
 
-import { IconProps } from "@/app/types/icon"
+import { IconProps } from "@/types/icon"
 
 const Hamburger: React.FC<IconProps> = ({
     size = "20",
