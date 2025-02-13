@@ -1,7 +1,8 @@
 import React from 'react';
-import { UseFormRegister, FieldError, Path } from 'react-hook-form';
+import { UseFormRegister, FieldError, UseFormTrigger, Path } from 'react-hook-form';
 import Eye from '@/components/icons/eye';
 import EyeOff from '@/components/icons/eye-off';
+
 
 import { FieldValues } from 'react-hook-form';
 
@@ -9,15 +10,15 @@ interface InputFieldProps<T extends FieldValues> {
   id: string;
   type: string;
   placeholder: string;
-  register: UseFormRegister<T>;  
+  register: UseFormRegister<T>;
   error?: FieldError;
-  trigger: (name: "username" | "email" | "password" | "confirmPassword" | "terms" | ("username" | "email" | "password" | "confirmPassword" | "terms")[] | readonly ("username" | "email" | "password" | "confirmPassword" | "terms")[] | undefined) => void;
+  trigger: UseFormTrigger<T>;
   showPasswordToggle?: boolean;
   showPassword?: boolean;
   setShowPassword?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const InputField = <T extends FieldValues>({ 
+const InputField = <T extends FieldValues>({
   id,
   type,
   placeholder,
@@ -37,8 +38,8 @@ const InputField = <T extends FieldValues>({
           placeholder={placeholder}
           className="w-full px-3 py-4 border rounded-md focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
           {...register(id as Path<T>, {
-            onChange: () => trigger(id as "username" | "email" | "password" | "confirmPassword" | "terms"),
-            onBlur: () => trigger(id as "username" | "email" | "password" | "confirmPassword" | "terms"),
+            onChange: () => trigger(id as Path<T>),
+            onBlur: () => trigger(id as Path<T>),
           })}
         />
         {showPasswordToggle && setShowPassword && (

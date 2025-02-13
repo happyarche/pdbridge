@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from 'react';
 import { z } from 'zod';
-import { useForm } from 'react-hook-form';
+import { useForm, UseFormTrigger } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Link from 'next/link';
 import { FormCard } from '@/components/auth/FormCard';
@@ -18,15 +18,17 @@ const signupSchema = z.object({
   path: ['confirmPassword'],
 });
 
+type SignupSchema = z.infer<typeof signupSchema>;
+
 export default function Page() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  const { register, handleSubmit, formState: { errors }, trigger } = useForm<z.infer<typeof signupSchema>>({
+  const { register, handleSubmit, formState: { errors }, trigger } = useForm<SignupSchema>({
     resolver: zodResolver(signupSchema),
   });
 
-  const onSubmit = (data: z.infer<typeof signupSchema>) => {
+  const onSubmit = (data: SignupSchema) => {
     console.log(data);
   };
 
@@ -52,7 +54,7 @@ export default function Page() {
         <InputField
           id="password"
           type="password"
-          placeholder="비밀번호를 입력하세요"
+          placeholder="비밀번호 입력"
           register={register}
           error={errors.password}
           trigger={trigger}
@@ -63,7 +65,7 @@ export default function Page() {
         <InputField
           id="confirmPassword"
           type="password"
-          placeholder="비밀번호를 한번 더  입력하세요"
+          placeholder="비밀번호 확인"
           register={register}
           error={errors.confirmPassword}
           trigger={trigger}
